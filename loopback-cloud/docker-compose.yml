@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  pg:
+    image: postgres:16
+    container_name: loopback_cloud_pg
+    environment:
+      POSTGRES_USER: loopback_user
+      POSTGRES_PASSWORD: loopback_pass
+      POSTGRES_DB: loopback_api
+    ports:
+      - "5433:5432"   # host:container (use 5433 locally to avoid clashing with any local PG)
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "loopback_user"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  pgdata:

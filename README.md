@@ -17,3 +17,8 @@ This repo proves I understand **cloud concepts**:
 ### 1) Install & run Postgres (docker)
 ```bash
 docker compose up -d
+npm install
+cp .env.example .env
+npm run build
+npm run migrate
+npm start
